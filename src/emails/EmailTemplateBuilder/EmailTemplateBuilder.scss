@@ -1,0 +1,582 @@
+.email-template-builder {
+	position: relative;
+	overflow: hidden;
+	.fr-box.fr-code-view .fr-element {
+		display: none !important;
+	}
+	.email-template-builder-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		margin-bottom: 15px;
+	}
+	.email-block-types {
+		margin: 0 -10px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		.email-block-type {
+			width: 113px;
+			height: 105px;
+			padding: 15px 0;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-direction: column;
+			border-width: 2px;
+			border-color: #d1d3d4;
+			border-style: dashed;
+			border-radius: 5px;
+			margin: 10px;
+			text-align: center;
+			text-transform: uppercase;
+			font-size: 12px;
+			cursor: pointer;
+			user-select: none;
+			.email-block-type-icon {
+				flex: 1 1 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 10px;
+			}
+		}
+		.side-menu-section-header {
+			flex: 1 1 100%;
+			padding: 0 10px;
+		}
+	}
+	.side-menu-section-header {
+		font-size: 13px;
+		font-family: "Montserrat";
+		font-weight: 700;
+		margin-bottom: 15px;
+		text-transform: uppercase;
+		color: #000;
+	}
+	.side-menu-description,
+	.input-character-limit {
+		font-size: 12px;
+		font-weight: 300;
+		font-style: italic;
+		color: #000;
+	}
+	.input-character-limit {
+		font-size: 10px;
+	}
+	.email-settings-input-wrapper {
+		input {
+			width: 100%;
+			padding: 8px 15px;
+			border: 1px solid #d1d3d4;
+			margin-bottom: 5px;
+		}
+	}
+	.email-background-color {
+		.email-color-picker-input {
+			max-width: 220px !important;
+			width: 100%;
+		}
+	}
+	.close-email-submenu {
+		display: block;
+		position: relative;
+		width: 20px;
+		height: 20px;
+		cursor: pointer;
+		&::after,
+		&::before {
+			content: "";
+			width: 15px;
+			border-top: 2px solid #6d6e71;
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) rotate(45deg);
+		}
+		&::before {
+			transform: translate(-50%, -50%) rotate(-45deg);
+		}
+	}
+
+	.email-template-builder-wrapper {
+		display: flex;
+		background-color: #fff;
+		border-radius: 10px;
+		border: 1px solid #d1d3d4;
+		border-top: 10px solid #6d6e71;
+		min-height: 700px;
+		.email-template-border-field {
+			margin-bottom: 15px;
+		}
+		.email-template-border-field-components {
+			display: flex;
+			align-items: center;
+			.email-template-border-style {
+				width: 40%;
+				flex: 1 1 auto;
+			}
+			.email-pixel-field {
+				min-width: unset;
+				width: 20%;
+				margin: 0 10px;
+				padding: 0;
+				.email-pixel-input-wrapper input {
+					padding-top: 8px;
+					padding-bottom: 8px;
+				}
+			}
+			div[class*="control"] {
+				min-height: 30px !important;
+			}
+			div[class*="indicatorContainer"] {
+				padding: 6px !important;
+			}
+		}
+
+		.email-template-component-view {
+			position: relative;
+			.email-template-edit-bar {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background-color: rgba(0, 0, 0, 0);
+				overflow: hidden;
+				opacity: 0;
+				border: 1px solid #96999c;
+				transition: all 0.2s;
+				height: 100%;
+				width: 100%;
+				min-height: 50px;
+				z-index: 3;
+				.email-template-actions-wrapper {
+					transform: translateY(-100%);
+					background-color: #f9f9f7;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					padding: 10px 20px;
+					transition: all 0.3s ease;
+					.email-actions-group {
+						display: flex;
+						align-items: center;
+						.action-arrow {
+							&::after {
+								content: "";
+								width: 12px;
+								height: 12px;
+								border: 3px solid #96999c;
+							}
+							&.action-up-arrow::after {
+								border-left-color: rgba(0, 0, 0, 0);
+								border-bottom-color: rgba(0, 0, 0, 0);
+								transform: rotate(-45deg) translateX(-50%);
+							}
+							&.action-down-arrow::after {
+								border-top-color: rgba(0, 0, 0, 0);
+								border-left-color: rgba(0, 0, 0, 0);
+								transform: rotate(45deg) translateX(-50%);
+							}
+						}
+						.email-template-action {
+							padding: 5px;
+							cursor: pointer;
+							display: flex;
+							align-items: center;
+							svg,
+							svg * {
+								fill: #96999c;
+								min-width: 16px;
+								max-height: 19px;
+								max-width: 16px;
+								height: auto;
+								transition: all 0.3s ease;
+							}
+							&:hover {
+								svg,
+								svg * {
+									fill: var(--light-blue);
+								}
+							}
+						}
+					}
+				}
+			}
+
+			&:hover {
+				.email-template-edit-bar {
+					opacity: 1;
+					.email-template-actions-wrapper {
+						transform: translateY(0);
+					}
+				}
+			}
+		}
+		.email-side-menu {
+			flex: 0 0 450px;
+			border-right: 1px solid #cccccc;
+			display: flex;
+			position: relative;
+			overflow-x: hidden;
+			overflow-y: auto;
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				color: #000;
+			}
+			&::-webkit-scrollbar {
+				width: 5px;
+			}
+			&::-webkit-scrollbar-track {
+				box-shadow: none;
+				background: #edebeb;
+			}
+			/* Handle */
+			&::-webkit-scrollbar-thumb {
+				background: var(--light-blue);
+				border-radius: 10px;
+			}
+			/* Handle on hover */
+			&::-webkit-scrollbar-thumb:hover {
+				background: var(--light-blue);
+			}
+			.email-side-menu-inner {
+				padding: 20px 35px;
+				background-color: #fff;
+				position: absolute;
+				top: 0;
+				right: 100%;
+				height: 100%;
+				width: 100%;
+				transition: all 0.3s ease;
+				z-index: 2;
+				.email-component-settings-wrapper {
+					padding-bottom: 200px;
+				}
+				&.active {
+					right: 0;
+					position: relative;
+				}
+			}
+		}
+		.email-component-wrapper {
+			flex: 1 1 auto;
+			padding: 60px 15px;
+		}
+		.email-components-container {
+			max-width: 900px;
+			margin: 0 auto;
+			background: #f9f9f7;
+			display: block;
+			padding: 60px 20px;
+			.inner-components-container {
+				max-width: 600px;
+				margin: 0 auto;
+				display: block;
+				.render-email-component {
+					display: block;
+				}
+				.skillsuite-email-footer {
+					display: block;
+					font-size: 9px;
+					text-align: center;
+					padding: 30px 20px;
+					p {
+						margin: 0 0 15px;
+						display: block;
+						font-size: inherit;
+						text-align: inherit;
+						font-family: "Montserrat";
+						font-weight: 400;
+						color: #000;
+					}
+				}
+				.email-logo-wrapper {
+					text-align: center;
+					display: block;
+					margin-bottom: 15px;
+					img {
+						max-width: 142px;
+					}
+				}
+				.email-custom-content-wrapper {
+					background: #fff;
+					display: block;
+				}
+			}
+		}
+	}
+	.email-template-preview {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		height: 100%;
+		width: 100%;
+		opacity: 0;
+		z-index: 55;
+		pointer-events: none;
+		transition: all 0.3s ease;
+		background: #fafafa;
+		border: 1px solid #cccccc;
+		padding: 60px 15px;
+		.email-preview-content {
+			max-width: 600px;
+			margin: 0 auto;
+			background-color: #fff;
+			display: block;
+		}
+		.close-template-preview {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			cursor: pointer;
+		}
+		&.active {
+			left: 0;
+			opacity: 1;
+			pointer-events: all;
+		}
+	}
+	.component-settings-section-header {
+		font-size: 13px;
+		font-weight: 600;
+		text-transform: uppercase;
+		margin-bottom: 10px;
+		flex: 1 1 100%;
+		min-width: 100%;
+		padding: 0 10px;
+	}
+	.close-email-color-picker {
+		z-index: 4000;
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.3);
+	}
+	.component-settings-section {
+		padding: 15px 0;
+		margin: 0 -10px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		.fr-command.fr-btn.fr-active + .fr-dropdown-menu {
+			overflow: visible !important;
+			.fr-dropdown-wrapper {
+				height: auto !important;
+			}
+		}
+		.fr-command.fr-btn + .fr-dropdown-menu {
+			min-width: 36px;
+			.fr-dropdown-wrapper {
+				position: absolute;
+				right: 0;
+				top: 4px;
+				bottom: auto;
+				left: auto;
+				background: #fff !important;
+				.fr-dropdown-content {
+					background: #fff !important;
+				}
+			}
+		}
+	}
+	.email-setting-color-field {
+		position: relative;
+		display: inline-block;
+		cursor: pointer;
+		.email-color-picker-input {
+			display: flex;
+			max-width: 180px;
+			cursor: pointer;
+			input {
+				width: 100%;
+				flex: 1 1 auto;
+				border: 0;
+				background-color: #f7f7f9;
+				padding: 5px 15px;
+				margin: 0 -2px;
+				cursor: pointer !important;
+			}
+			.email-color-icon {
+				width: 36px;
+				min-height: 36px;
+				padding-right: px;
+				text-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border: 1px solid #f1f2f2;
+				border-radius: 3px;
+				flex: 0 0 36px;
+				background-color: #fff;
+			}
+			.email-color-picker-color-block {
+				width: 36px;
+				min-height: 36px;
+				flex: 0 0 36px;
+				border-radius: 0 3px 3px 0;
+				background-color: #96999c;
+				border: 1px solid #f1f2f2;
+			}
+		}
+		.block-picker {
+			box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.16) !important;
+			position: absolute !important;
+			top: 102% !important;
+			left: 50% !important;
+			transform: translateX(-50%) !important;
+			z-index: 5000;
+		}
+	}
+	.fr-toolbar .fr-more-toolbar {
+		padding: 0 !important;
+		text-align: center;
+		justify-content: center;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.fr-box.fr-basic .fr-element {
+		min-height: 150px;
+	}
+	.component-section-settings-wrapper-text {
+		width: 100%;
+		input,
+		.email-component-text-field {
+			width: 100%;
+		}
+		input {
+			padding: 10px 15px;
+			border-radius: 5px;
+			border: 1px solid #d1d3d4;
+			margin: 5px 0;
+		}
+	}
+
+	.component-section-settings-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 0 10px;
+		min-width: 49%;
+		margin-bottom: 15px;
+
+		&.component-section-settings-wrapper-image {
+			justify-content: center;
+			width: 100%;
+			.email-template-image-setting-buttons {
+				text-align: center;
+				.email-template-image-button {
+					padding: 5px 10px;
+					color: #96999c;
+					font-weight: 700 !important;
+					border: 1px solid #96999c;
+					display: inline-block !important;
+					flex: 0 1 auto;
+					margin: 10px auto;
+					border-radius: 3px;
+					cursor: pointer;
+				}
+			}
+		}
+		&.component-section-settings-wrapper-font_family,
+		&.component-section-settings-wrapper-froala {
+			min-width: 100%;
+		}
+		label {
+			font-size: 9px;
+			font-weight: 600;
+			text-transform: uppercase;
+			margin-bottom: 3px;
+			display: block;
+			font-family: "Montserrat";
+		}
+	}
+
+	.email-style-button-wrapper {
+		button.email-style-button {
+			min-width: 34px;
+			min-height: 34px;
+			border: 1px solid #f7f7f7;
+			border-radius: 3px;
+			margin: 0 5px;
+			background: #fff;
+			&.active {
+				border-color: var(--light-blue);
+			}
+			&:first-of-type {
+				margin-left: 0;
+			}
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+	.pixel-field-group-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin: 0px -5px;
+		.component-settings-section-header {
+			padding: 0 5px;
+		}
+		.email-pixel-field {
+			padding: 5px 5px;
+			min-width: 70px;
+			max-width: 97px;
+		}
+	}
+	.email-component-font-family {
+		width: 100%;
+		max-width: 180px;
+		.email-font-family-select * {
+			font-family: inherit;
+		}
+	}
+	.email-pixel-field {
+		display: inline-block;
+		padding: 5px 0;
+		min-width: 180px;
+		.email-pixel-input-wrapper {
+			display: flex;
+			input {
+				width: auto;
+				min-width: 0;
+				max-width: 150px;
+				appearance: none;
+				-webkit-appearance: none;
+				text-align: right;
+				border: 1px solid #f1f2f2;
+				border-right: 0;
+				border-radius: 5px 0 0 5px;
+				padding: 7px 0 7px 15px;
+				font-size: 15px;
+				&::-webkit-outer-spin-button,
+				&::-webkit-inner-spin-button {
+					-webkit-appearance: none;
+					margin: 0;
+				}
+			}
+			.email-pixel-unit {
+				display: flex;
+				align-items: center;
+				font-size: 15px;
+				padding: 5px 10px 5px 0;
+				border: 1px solid #f1f2f2;
+				border-left: 0;
+				border-radius: 0 5px 5px 0;
+				user-select: none;
+				cursor: text;
+			}
+		}
+	}
+}
