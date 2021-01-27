@@ -1,15 +1,10 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer } from "react";
 import SideMenu from "containers/Emails/EmailTemplateResources/Sidemenu/Sidemenu";
 import { emailTemplateReducer } from "containers/Emails/EmailTemplateResources/emailTemplateReducer";
 import Components from "containers/Emails/EmailTemplateResources/Components";
-import { useParams, Link } from "react-router-dom";
 import "./EmailTemplateBuilder.scss";
-import { AsyncPost, AsyncGet, AsyncPatch, AsyncGetAll, AsyncPostAll, AsyncPatchAll } from "Global/api";
-import { getErrorMessage, errorToast, successToast } from "Global/functions";
 import shortid from "shortid";
 import { Loading } from "components/objects/WaitingComponent";
-import { buildEmailHtml, formatDataToPost, formatDataFromBackend, formatComponentToPost } from "containers/Emails/EmailTemplateResources/emailTemplateDataFormat";
-import {call} from "ramda";
 
 const initialState = {
 	components: [],
@@ -32,27 +27,16 @@ const initialState = {
 	preview: false,
 	background_color: "#fff"
 };
+
 const EmailTemplateBuilder = () => {
 	const [state, dispatch] = useReducer(emailTemplateReducer, initialState);
-	let urlParams = useParams();
 
 	if (state.loading) return <Loading />;
 
 	return (
 		<div className="email-template-builder">
-			<Link to="/admin/settings/email/all/" className="builder-bread-crumb">
-				&lt; My Saved Emails
-			</Link>
 			<div className="email-template-builder-header">
 				<h1>{state.id ? state.label : "New Email"}</h1>
-				<div className="email-template-actions">
-					<button type="button" className="btn btn-small btn-clear" onClick={sendTestEmail}>
-						Send Test Email
-					</button>
-					<button type="button" className="btn btn-small mr-0" onClick={saveEmail}>
-						Save
-					</button>
-				</div>
 			</div>
 			<div className="email-template-builder-wrapper">
 				<SideMenu state={state} dispatch={dispatch} />

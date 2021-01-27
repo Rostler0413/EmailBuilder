@@ -1,0 +1,11 @@
+* {
+	box-sizing: border-box;
+}
+p {
+	font-weight: bold;
+}
+.fr-box.fr-basic .fr-element.fr-view {
+	font-family: "Times New Roman", Georgia, Serif;
+	font-size: 18px;
+	color: #444444;
+}
